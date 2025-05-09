@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to serve static files
-app.use(express.static('public'));
+app.use(express.static('Public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: 'secret-key',
@@ -52,16 +52,16 @@ app.get('/logout', (req, res) => {
 
 // Set up basic routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, '/Public/index.html'));
   console.log("__dirname:", __dirname);
 });
 
 app.get('/projects', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/projects.html'));
+  res.sendFile(path.join(__dirname, '/Public/projects.html'));
 });
 
 app.get('/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/contact.html'));
+  res.sendFile(path.join(__dirname, '/Public/contact.html'));
 });
 
 app.use((req, res) => {
