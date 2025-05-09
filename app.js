@@ -1,5 +1,4 @@
 // Basic Node.js + Express Portfolio Site
-
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -54,6 +53,7 @@ app.get('/logout', (req, res) => {
 // Set up basic routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
+  console.log("__dirname:", __dirname);
 });
 
 app.get('/projects', (req, res) => {
