@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -20,8 +21,15 @@ const USER = {
   username: 'admin',
   password: 'admin'
 };
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5,
+  message: 'Too many login attempts. Please try again later.',
+});
+
 // Routes
-app.get('/login', (req, res) => {
+app.get('/login', loginLimiter, (req, res) => {
   res.sendFile(path.join(__dirname, '/views/login.html'));
 });
 
@@ -31,7 +39,7 @@ app.post('/login', (req, res) => {
     req.session.loggedIn = true;
     res.redirect('/admin');
   } else {
-    res.send('Invalid credentials. <a href="/login">Try again</a>');
+    res.status(401).send('<script>alert("Invalid credentials."); window.location.href="/login";</script>');
   }
 });
 
