@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const rateLimit = require('express-rate-limit');
+const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -75,6 +76,34 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
   res.sendFile(path.join(__dirname, '/Public/contact.html'));
 });
+
+app.post('/contact', async  (req, res) => {
+  const { name, email, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'bel.richard11@gmail.com',
+      pass: 'eude nwzh efwz fudi'
+    }
+  });
+
+  const mailOptions = {
+    from: email,
+    to: 'bel.richard11@gmail.com',
+    subject: `Message from ${name}`,
+    text: message
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.redirect('/contact?success=true');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.redirect('/contact?success=false');
+  };
+});
+
 
 app.use((req, res) => {
   res.status(404).send('404 - Page not found');
