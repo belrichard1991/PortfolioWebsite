@@ -1,0 +1,88 @@
+/* For the About me Page */
+  /* Reset some basic styles */
+  
+
+  
+  /* Center and contain the content */
+  .container2 {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Headings */
+  h1, h2, h3 {
+    color: #004080;
+    margin-bottom: 10px;
+  }
+  
+  nav {
+    margin-top: 0px;
+  }
+  
+  nav a {
+    color: #ffffffcc;
+    margin: 0 15px;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    color: #ffffff;
+  }
+  /* Section spacing */
+  section {
+    margin-bottom: 40px;
+  }
+  
+  /* Skills list */
+  .skills ul, .education ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .skills li, .education li {
+    background: #e0ebff;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  /* Contact section */
+  .contact a {
+    color: #004080;
+    text-decoration: none;
+  }
+  
+  .contact a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container2 {
+      padding: 20px;
+    }
+  }
+
+  @keyframes slideFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .container2.animate-entry {
+    animation: slideFadeIn 1s ease-out forwards;
+  }
+  
+  .container2.animate-entry :nth-child(1){
+    animation: slideFadeIn 2s ease-out forwards;
+  }
+  

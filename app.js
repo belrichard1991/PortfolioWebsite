@@ -29,11 +29,11 @@ const loginLimiter = rateLimit({
 });
 
 // Routes
-app.get('/login', loginLimiter, (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/login.html'));
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', loginLimiter, (req, res) => {
   const { username, password } = req.body;
   if (username === USER.username && password === USER.password) {
     req.session.loggedIn = true;
@@ -66,6 +66,10 @@ app.get('/', (req, res) => {
 
 app.get('/projects', (req, res) => {
   res.sendFile(path.join(__dirname, '/Public/projects.html'));
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, '/Public/about.html'));
 });
 
 app.get('/contact', (req, res) => {
