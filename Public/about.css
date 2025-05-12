@@ -66,6 +66,12 @@
       padding: 20px;
     }
   }
+  
+  footer {
+    background-color: #212529;
+    color: #fff;
+    padding: 20px 0;
+  }
 
   @keyframes slideFadeIn {
     0% {
